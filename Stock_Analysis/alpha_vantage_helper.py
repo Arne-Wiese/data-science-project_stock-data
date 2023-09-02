@@ -24,7 +24,6 @@ class AlphaVantageHelper:
             active_symbols = [row[0] for row in my_list if row[6] == 'Active']
             return active_symbols
         
-
     def extend_stock_data_csv(self, symbols, folder, filename):
         # Create destination path for file
         data_folder = folder
@@ -67,7 +66,6 @@ class AlphaVantageHelper:
                     csv_exists = True
             else:
                 print(f"Failed to download CSV data for {symbol}. Status code: {response.status_code}")
-
 
     @staticmethod
     def is_in_csv(symbol, folder, filename):
