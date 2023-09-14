@@ -11,5 +11,6 @@ def render() -> html.Div:
             display_format='YYYY-MM-DD',
         ),
         html.P("One interesting event is the first COVID-19 lockdown. It happened on March 11, 2020.\
-               In the United Kingdom it was announced on March 23, 2020."),
+               In the United Kingdom it was announced on March 23, 2020.\n\
+               You will retrieve the data 1 year for and after the selected date."),
     ])

@@ -13,7 +13,7 @@ def render(app: Dash, data: pd.DataFrame) -> html.Div:
         [
             Input(ids.EVENTS_DROPDOWN, "value"),
             Input(ids.EVENT_DATE_PICKER, "date"),
-            Input(ids.CHART_DROPDOWN, "value")
+            Input(ids.CHART_DROPDOWN_EVENT, "value")
         ],
     )
     def update_line_chart_event(
@@ -44,9 +44,9 @@ def render(app: Dash, data: pd.DataFrame) -> html.Div:
 
             # Create a layout
             layout = go.Layout(
-                title='Public Sentiment Analysis with Nvidia Stock',
+                title='Stock Price of selected Stocks',
                 xaxis=dict(title='Date'),
-                yaxis=dict(title='Normalized Values')
+                yaxis=dict(title='Adjusted Stock Price')
             )
 
             traces = create_traces(symbols)
@@ -75,6 +75,6 @@ def render(app: Dash, data: pd.DataFrame) -> html.Div:
 
             return html.Div(dcc.Graph(figure=fig), id=ids.LINE_CHART_EVENT)
         else:
-            return 
+            return html.Div(id=ids.LINE_CHART_EVENT)
 
     return html.Div(id=ids.LINE_CHART_EVENT)

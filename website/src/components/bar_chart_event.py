@@ -1,5 +1,6 @@
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 from dash import Dash, dcc, html
 from dash.dependencies import Input, Output
 
@@ -12,7 +13,7 @@ def render(app: Dash, data: pd.DataFrame) -> html.Div:
         [
             Input(ids.EVENTS_DROPDOWN, "value"),
             Input(ids.EVENT_DATE_PICKER, "date"),
-            Input(ids.CHART_DROPDOWN, "value"),
+            Input(ids.CHART_DROPDOWN_EVENT, "value"),
         ],
     )
     def update_bar_chart_event(
@@ -48,14 +49,30 @@ def render(app: Dash, data: pd.DataFrame) -> html.Div:
                     values=DataSchemaEvent.PRICE, index=[DataSchemaEvent.SYMBOL, 'Before/After'], aggfunc='sum')
                 return pt.reset_index().sort_values(DataSchemaEvent.PRICE, ascending=False)
             
-            fig = px.bar(
-                create_pivot_table(),
-                x=DataSchemaEvent.SYMBOL,
-                y=DataSchemaEvent.PRICE,
-                color='Before/After',
-                labels={DataSchemaEvent.SYMBOL: 'Symbol', DataSchemaEvent.PRICE: 'Price'},
-                color_discrete_sequence=['blue', 'orange'],
+            # Define colors for 'Before' and 'After'
+            colors = {'Before': 'blue', 'After': 'orange'}
+            df = create_pivot_table()
+            # Create a list of bar traces for each 'Before' and 'After' category
+            traces = []
+            for category, color in colors.items():
+                new_df = df[df['Before/After'] == category]
+                trace = go.Bar(
+                    x=new_df[DataSchemaEvent.SYMBOL],
+                    y=new_df[DataSchemaEvent.PRICE],
+                    name=category,
+                    marker=dict(color=color),
+                )
+                traces.append(trace)
+
+            # Create the figure
+            layout = go.Layout(
+                xaxis=dict(title='Symbol'),
+                yaxis=dict(title='Price'),
+                title='Price Comparison Before and After',
+                barmode='group',  # Group bars for 'Before' and 'After'
             )
+
+            fig = go.Figure(data=traces, layout=layout)
 
             return html.Div(dcc.Graph(figure=fig), id=ids.BAR_CHART_EVENT)
         else:
