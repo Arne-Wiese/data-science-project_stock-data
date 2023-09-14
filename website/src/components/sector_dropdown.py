@@ -24,7 +24,7 @@ def render(app: Dash, data: pd.DataFrame) -> html.Div:
             dcc.Dropdown(
                 id=ids.SECTORS_DROPDOWN,
                 options=[{"label": sectors, "value": sectors} for sectors in unique_sectors],
-                value=unique_sectors,
+                value=unique_sectors[:5],
                 multi=True,
             ),
             html.Button(

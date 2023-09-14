@@ -35,6 +35,12 @@ class DataSchemaEvent:
     DATE = "date"
 
 
+class DataSchemaSectorAnalyis:
+    PRICE = "value"
+    SYMBOL = "symbol"
+    DATE = "date"
+
+
 def load_sentiment_data(path: str) -> pd.DataFrame:
     # load the data from the CSV file
     data = pd.read_csv(
@@ -72,6 +78,21 @@ def load_event_data(path: str) -> pd.DataFrame:
             DataSchemaEvent.SYMBOL: str,
             DataSchemaEvent.PRICE: float,
             DataSchemaEvent.DATE: str,
+        },
+        parse_dates=[DataSchemaEvent.DATE]
+    )
+    #data[DataSchemaEvent.YEAR] = data[DataSchemaEvent.DATE].dt.year.astype(str)
+    #data[DataSchemaEvent.MONTH] = data[DataSchemaEvent.DATE].dt.month.astype(str)
+    return data
+
+def load_sector_analysis_data(path: str) -> pd.DataFrame:
+    # load the data from the CSV file
+    data = pd.read_csv(
+        path,
+        dtype={
+            DataSchemaSectorAnalyis.SYMBOL: str,
+            DataSchemaSectorAnalyis.PRICE: float,
+            DataSchemaSectorAnalyis.DATE: str,
         },
         parse_dates=[DataSchemaEvent.DATE]
     )

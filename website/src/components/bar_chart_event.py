@@ -13,7 +13,7 @@ def render(app: Dash, data: pd.DataFrame) -> html.Div:
         [
             Input(ids.EVENTS_DROPDOWN, "value"),
             Input(ids.EVENT_DATE_PICKER, "date"),
-            Input(ids.CHART_DROPDOWN, "value"),
+            Input(ids.CHART_DROPDOWN_EVENT, "value"),
         ],
     )
     def update_bar_chart_event(
