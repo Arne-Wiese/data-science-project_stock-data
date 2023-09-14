@@ -8,8 +8,8 @@ from src.components import (
     event_date_picker,
     event_dropdown,
     line_chart_event,
+    line_chart_sentiment,
     sector_dropdown,
-    line_chart,
 )
 
 
@@ -34,7 +34,7 @@ def create_layout(app: Dash, sentiment_data: pd.DataFrame, sector_data: pd.DataF
                                     days_dropdown.render(app, sentiment_data),
                                 ],
                             ),
-                            line_chart.render(app, sentiment_data),
+                            line_chart_sentiment.render(app, sentiment_data),
                         ],
                     ),
                     dcc.Tab(
