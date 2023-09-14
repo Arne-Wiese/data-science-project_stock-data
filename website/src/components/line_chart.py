@@ -22,7 +22,7 @@ def render(app: Dash, data: pd.DataFrame) -> html.Div:
         )
 
         if filtered_data.shape[0] == 0:
-            return html.Div("No data selected.", id=ids.PIE_CHART)
+            return html.Div("No data selected.", id=ids.LINE_CHART_SENTIMENT)
 
         trace1 = go.Scatter(
             x=filtered_data[DataSchemaSentiment.DATE],

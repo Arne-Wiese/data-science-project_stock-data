@@ -41,6 +41,7 @@ def render(app: Dash, data: pd.DataFrame) -> html.Div:
             x=DataSchemaSector.SECTOR,
             y=DataSchemaSector.CORRELATION,
             color=DataSchemaSector.SECTOR,
+            labels={DataSchemaSector.SECTOR: 'Sector', DataSchemaSector.CORRELATION: 'Correlation Value'},
         )
 
         fig.update_yaxes(range=[0.6, 1.0])

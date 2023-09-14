@@ -61,6 +61,7 @@ def create_layout(app: Dash, sentiment_data: pd.DataFrame, sector_data: pd.DataF
                                 ],
                             ),
                             line_chart_event.render(app, event_data),
+                            bar_chart_event.render(app, event_data),
                         ],
                     ),
                 ],
