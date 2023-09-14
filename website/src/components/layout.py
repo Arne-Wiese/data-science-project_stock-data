@@ -1,8 +1,8 @@
 import pandas as pd
 from dash import Dash, html, dcc
 from src.components import (
-    bar_chart,
     bar_chart_event,
+    bar_chart_sector,
     chart_dropdown,
     days_dropdown,
     event_date_picker,
@@ -47,7 +47,7 @@ def create_layout(app: Dash, sentiment_data: pd.DataFrame, sector_data: pd.DataF
                                     sector_dropdown.render(app, sector_data),
                                 ],
                             ),
-                            bar_chart.render(app, sector_data),
+                            bar_chart_sector.render(app, sector_data),
                         ],
                     ),
                     dcc.Tab(
