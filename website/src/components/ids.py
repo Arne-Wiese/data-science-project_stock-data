@@ -14,3 +14,5 @@ EVENTS_DROPDOWN = "events-dropdown"
 
 EVENT_DATE_PICKER = "event-date-picker"
 
+CHART_DROPDOWN = "char-dropdown"
+

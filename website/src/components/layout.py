@@ -3,6 +3,7 @@ from dash import Dash, html, dcc
 from src.components import (
     bar_chart,
     bar_chart_event,
+    chart_dropdown,
     days_dropdown,
     event_date_picker,
     event_dropdown,
@@ -58,6 +59,7 @@ def create_layout(app: Dash, sentiment_data: pd.DataFrame, sector_data: pd.DataF
                                 children=[
                                     event_dropdown.render(app, event_data),
                                     event_date_picker.render(),
+                                    chart_dropdown.render(),
                                 ],
                             ),
                             line_chart_event.render(app, event_data),
