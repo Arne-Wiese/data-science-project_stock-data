@@ -11,7 +11,7 @@ app.layout = html.Div([
 
 @callback(Output('display-value', 'children'), Input('dropdown', 'value'))
 def display_value(value):
-return f'You have selected {value}'
+    return f'You have selected {value}'
 
 if __name__ == '__main__':
     app.run(debug=True)
